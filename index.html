@@ -17,23 +17,34 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header id="navbar">
+  <header id="navbar" role="banner">
     <nav class="nav-container" aria-label="Main navigation">
-      <a href="#hero" class="nav-logo"><span class="logo-bracket">&lt;</span>FJO<span class="logo-bracket">/&gt;</span></a>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <ul class="nav-links" id="nav-links">
+      <a href="#hero" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">&lt;</span>FJO<span class="logo-bracket">/&gt;</span>
+      </a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
         <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
         <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
         <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
         <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
         <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#certifications" class="nav-link" data-section="certifications">Certificate</a></li>
+        <li><a href="#certifications" class="nav-link" data-section="certifications">Certs</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme"><span class="theme-icon sun">☀</span><span class="theme-icon moon">☾</span></button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
+        <span class="theme-icon sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </span>
+        <span class="theme-icon moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+      </button>
     </nav>
-    <div class="nav-progress" id="nav-progress"></div>
+    <div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
   </header>
 
   <main>
