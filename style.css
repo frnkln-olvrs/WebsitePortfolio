@@ -3,3 +3,11 @@
    Premium UI/UX · Light + Dark · Glassmorphism · Responsive
    ============================================================ */
 
+:root {
+  /* Accent */
+  --accent:         #6366f1;
+  --accent-2:       #8b5cf6;
+  --accent-glow:    rgba(99, 102, 241, 0.35);
+  --accent-light:   rgba(99, 102, 241, 0.12);
+
+}
