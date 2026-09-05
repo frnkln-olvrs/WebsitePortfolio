@@ -6,6 +6,9 @@
   <meta name="description" content="Franklin Oliveros — Computer Science graduate and Web developer. Intake Specialist. Premium portfolio and resume." />
   <meta name="keywords" content="portfolio, resume, full-stack developer, UI/UX designer, React, Node.js" />
   <meta name="author" content="Franklin Oliveros" />
+  <meta property="og:title" content="Franklin Oliveros — Portfolio" />
+  <meta property="og:description" content="Computer Science graduate with web development and U.S. healthcare patient intake experience." />
+  <meta property="og:type" content="website" />
   <title>Franklin Oliveros — Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
