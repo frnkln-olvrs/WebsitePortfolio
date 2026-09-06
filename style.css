@@ -208,6 +208,83 @@ input, textarea { font: inherit; }
   66%       { transform: translate(-20px,30px) scale(0.96); }
 }
 
+/* ── 5. SKELETON OVERLAY ─────────────────────────────────── */
+.skeleton-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-base);
+  z-index: 9999;
+  padding: 0 24px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.skeleton-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sk-block {
+  background: var(--sk-base);
+  border-radius: var(--r-md);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-image: var(--sk-shimmer); background-position: 100% 0; }
+  100% { background-image: var(--sk-shimmer); background-position: -100% 0; }
+}
+
+.sk-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: var(--nav-h);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.sk-logo  { width: 72px;  height: 32px; border-radius: var(--r-sm); }
+.sk-nav-links { display: flex; gap: 16px; margin-left: auto; }
+.sk-link  { width: 64px;  height: 18px; }
+.sk-toggle{ width: 42px;  height: 42px; border-radius: var(--r-full); }
+
+.sk-hero {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: var(--max-w);
+  margin: 40px auto 0;
+  padding: 20px 0;
+}
+
+.sk-hero-left { flex-shrink: 0; }
+.sk-avatar {
+  width: 260px; height: 260px;
+  border-radius: 50%;
+}
+
+.sk-hero-right { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.sk-badge     { width: 180px; height: 28px; border-radius: var(--r-full); }
+.sk-h1-line   { height: 52px; border-radius: var(--r-md); }
+.sk-h1-line-1 { width: 70%; }
+.sk-h1-line-2 { width: 55%; }
+.sk-subtitle  { width: 85%; height: 24px; border-radius: var(--r-sm); }
+.sk-text-line { height: 16px; border-radius: var(--r-sm); }
+.sk-text-1    { width: 100%; }
+.sk-text-2    { width: 95%; }
+.sk-text-3    { width: 80%; }
+.sk-btns      { display: flex; gap: 14px; margin-top: 8px; }
+.sk-btn       { width: 148px; height: 48px; border-radius: var(--r-full); }
+
+.sk-section {
+  max-width: var(--max-w);
+  margin: 60px auto 0;
+}
+.sk-section-title { width: 220px; height: 36px; border-radius: var(--r-md); margin: 0 auto 32px; }
+.sk-cards { display: flex; gap: 20px; }
+.sk-card  { flex: 1; height: 180px; border-radius: var(--r-lg); }
+
 /* ── 5. NAVIGATION ────────────────────────────────────────── */
 #navbar {
   position: fixed;
