@@ -3,6 +3,7 @@
    Premium UI/UX · Light + Dark · Glassmorphism · Responsive
    ============================================================ */
 
+/* ── 1. CUSTOM PROPERTIES ────────────────────────────────── */
 :root {
   /* Accent */
   --accent:         #6366f1;
@@ -10,8 +11,98 @@
   --accent-glow:    rgba(99, 102, 241, 0.35);
   --accent-light:   rgba(99, 102, 241, 0.12);
 
+  /* Typography */
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:  'Fira Code', 'Cascadia Code', monospace;
+
+  /* Radii */
+  --r-sm:  6px;
+  --r-md:  12px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --r-full: 9999px;
+
+  /* Transitions */
+  --t-fast:   0.15s ease;
+  --t-base:   0.25s ease;
+  --t-slow:   0.45s cubic-bezier(0.4,0,0.2,1);
+  --t-spring: 0.5s cubic-bezier(0.34,1.56,0.64,1);
+
+  /* Sizes */
+  --nav-h:    68px;
+  --max-w:    1200px;
+  --max-w-sm: 760px;
 }
 
+/* ── DARK THEME (default) ─────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:        #0d0e12;
+  --bg-surface:     #13141a;
+  --bg-elevated:    #1a1b24;
+  --bg-card:        rgba(255,255,255,0.04);
+  --bg-card-hover:  rgba(255,255,255,0.07);
+
+  --border:         rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  --text-primary:   #f1f2f7;
+  --text-secondary: #9b9cad;
+  --text-muted:     #5c5d72;
+  --text-on-accent: #ffffff;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.5);
+  --shadow-lg:  0 12px 48px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 40px rgba(99,102,241,0.2);
+
+  --glass-bg:      rgba(255,255,255,0.04);
+  --glass-border:  rgba(255,255,255,0.09);
+  --glass-blur:    saturate(180%) blur(20px);
+
+  --sk-base:    #1e2030;
+  --sk-shimmer: linear-gradient(90deg, #1e2030 25%, #2a2d45 50%, #1e2030 75%);
+
+  --nav-bg:     rgba(13,14,18,0.75);
+  --nav-border: rgba(255,255,255,0.07);
+
+  --skill-track: rgba(255,255,255,0.06);
+}
+
+/* ── LIGHT THEME ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:        #f8f9fc;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f0f1f8;
+  --bg-card:        rgba(255,255,255,0.85);
+  --bg-card-hover:  rgba(255,255,255,0.97);
+
+  --border:         rgba(0,0,0,0.07);
+  --border-strong:  rgba(0,0,0,0.13);
+
+  --text-primary:   #12131a;
+  --text-secondary: #4f5068;
+  --text-muted:     #9899aa;
+  --text-on-accent: #ffffff;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:  0 12px 48px rgba(0,0,0,0.12);
+  --shadow-glow: 0 0 40px rgba(99,102,241,0.15);
+
+  --glass-bg:      rgba(255,255,255,0.72);
+  --glass-border:  rgba(0,0,0,0.08);
+  --glass-blur:    saturate(180%) blur(20px);
+
+  --sk-base:    #e8eaf2;
+  --sk-shimmer: linear-gradient(90deg, #e8eaf2 25%, #f4f5fb 50%, #e8eaf2 75%);
+
+  --nav-bg:     rgba(248,249,252,0.82);
+  --nav-border: rgba(0,0,0,0.07);
+
+  --skill-track: rgba(0,0,0,0.06);
+}
+
+/* ── 2. RESET & BASE ─────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
