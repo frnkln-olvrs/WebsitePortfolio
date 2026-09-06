@@ -285,7 +285,7 @@ input, textarea { font: inherit; }
 .sk-cards { display: flex; gap: 20px; }
 .sk-card  { flex: 1; height: 180px; border-radius: var(--r-lg); }
 
-/* ── 5. NAVIGATION ────────────────────────────────────────── */
+/* ── 6. NAVIGATION ────────────────────────────────────────── */
 #navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -433,7 +433,7 @@ input, textarea { font: inherit; }
   transition: width 0.1s linear;
 }
 
-/* ── 6. SECTION BASE ─────────────────────────────────────── */
+/* ── 7. SECTION BASE ─────────────────────────────────────── */
 .section {
   position: relative;
   z-index: 1;
