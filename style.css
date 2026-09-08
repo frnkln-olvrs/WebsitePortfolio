@@ -1180,3 +1180,84 @@ input, textarea { font: inherit; }
   border-radius: var(--r-full);
   padding: 3px 10px;
 }
+
+/* ── 14. EDUCATION ───────────────────────────────────────── */
+.education-section { background: var(--bg-surface); }
+[data-theme="light"] .education-section { background: #f4f5fc; }
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.education-card {
+  padding: 32px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-year-badge {
+  position: absolute;
+  top: 24px; right: 24px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid rgba(99,102,241,0.25);
+  border-radius: var(--r-full);
+  padding: 3px 10px;
+}
+
+.edu-icon {
+  width: 52px; height: 52px;
+  border-radius: var(--r-lg);
+  background: var(--accent-light);
+  border: 1px solid rgba(99,102,241,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+
+.edu-icon svg { width: 24px; height: 24px; }
+
+.education-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.edu-school {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.edu-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.edu-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.gpa-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #22c55e;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: var(--r-full);
+  padding: 3px 12px;
+}
