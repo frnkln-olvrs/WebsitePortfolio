@@ -41,3 +41,21 @@ const ThemeManager = (() => {
   return { init };
 })();
 
+/* ── 2. SKELETON LOADER ──────────────────────────────────── */
+const SkeletonLoader = (() => {
+  function init() {
+    const overlay = document.getElementById('skeleton-overlay');
+    if (!overlay) return;
+
+    const DURATION = 1400 + Math.random() * 400; // 1.4s – 1.8s
+
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      document.body.classList.remove('loading');
+      // Trigger entrance animations after skeleton fades
+      setTimeout(() => RevealManager.triggerHero(), 300);
+    }, DURATION);
+  }
+
+  return { init };
+})();
