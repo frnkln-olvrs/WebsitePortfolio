@@ -1263,7 +1263,7 @@ input, textarea { font: inherit; }
 }
 
 /* ── 15. PROJECTS ────────────────────────────────────────── */
-.projects-section {}
+/* .projects-section {} */
 
 .projects-filter {
   display: flex;
@@ -1498,7 +1498,7 @@ input, textarea { font: inherit; }
 }
 
 /* ── 17. CONTACT ─────────────────────────────────────────── */
-.contact-section {}
+/* .contact-section {} */
 
 .contact-layout {
   display: grid;
@@ -1653,3 +1653,87 @@ a.contact-item:hover {
   background: rgba(248,113,113,0.1);
   border: 1px solid rgba(248,113,113,0.25);
 }
+
+/* ── 18. FOOTER ──────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.footer-copy {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.footer-links { display: flex; gap: 20px; }
+
+.footer-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--t-fast);
+}
+
+.footer-link:hover { color: var(--accent); }
+
+/* ── 19. SCROLL REVEAL ANIMATIONS ───────────────────────── */
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-zoom {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+              transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal-zoom  { transform: scale(0.92); }
+
+.reveal-up.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-zoom.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.skills-categories .skill-category:nth-child(1) { transition-delay: 0.05s; }
+.skills-categories .skill-category:nth-child(2) { transition-delay: 0.10s; }
+.skills-categories .skill-category:nth-child(3) { transition-delay: 0.15s; }
+.skills-categories .skill-category:nth-child(4) { transition-delay: 0.20s; }
+.skills-categories .skill-category:nth-child(5) { transition-delay: 0.25s; }
+.skills-categories .skill-category:nth-child(6) { transition-delay: 0.30s; }
+
+.about-grid .about-card:nth-child(1) { transition-delay: 0.05s; }
+.about-grid .about-card:nth-child(2) { transition-delay: 0.12s; }
+.about-grid .about-card:nth-child(3) { transition-delay: 0.20s; }
+
+.projects-grid .project-card:nth-child(1) { transition-delay: 0.05s; }
+.projects-grid .project-card:nth-child(2) { transition-delay: 0.10s; }
+.projects-grid .project-card:nth-child(3) { transition-delay: 0.15s; }
+.projects-grid .project-card:nth-child(4) { transition-delay: 0.20s; }
+.projects-grid .project-card:nth-child(5) { transition-delay: 0.25s; }
+.projects-grid .project-card:nth-child(6) { transition-delay: 0.30s; }
+
