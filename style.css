@@ -921,3 +921,262 @@ input, textarea { font: inherit; }
   border-radius: 50%;
   background: var(--accent);
 }
+
+/* ── 12. SKILLS ──────────────────────────────────────────── */
+.skills-section {
+  background: var(--bg-surface);
+}
+
+[data-theme="light"] .skills-section { background: #f4f5fc; }
+
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.skill-category {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-xl);
+  padding: 28px 28px;
+  animation-delay: var(--delay, 0s);
+  transition: transform var(--t-slow), box-shadow var(--t-slow);
+}
+
+.skill-category:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.skill-category-title svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+
+.skill-bars { display: flex; flex-direction: column; gap: 14px; }
+
+/* .skill-bar-item {} */
+
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+
+.skill-bar-header span:first-child {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.skill-pct {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.skill-track {
+  height: 5px;
+  background: var(--skill-track);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: var(--r-full);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chip {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  padding: 5px 13px;
+  transition: color var(--t-fast), border-color var(--t-fast), background-color var(--t-fast);
+  cursor: default;
+}
+
+.skill-chip:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* ── 13. EXPERIENCE ──────────────────────────────────────── */
+/* .experience-section {} */
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 24px; bottom: 24px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+  border-radius: var(--r-full);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 36px;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-marker {
+  position: absolute;
+  left: -40px; top: 28px;
+}
+
+.timeline-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: 3px solid var(--bg-base);
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 16px var(--accent-glow);
+  transition: transform var(--t-spring);
+}
+
+.timeline-item:hover .timeline-dot { transform: scale(1.3); }
+
+.timeline-card { padding: 28px 32px; }
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.timeline-role {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.timeline-company {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.company-logo {
+  width: 26px; height: 26px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, #4285f4, #34a853);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.company-logo.stripe  { background: linear-gradient(135deg, #635bff, #0a2540); }
+.company-logo.meta    { background: linear-gradient(135deg, #1877f2, #42b72a); }
+
+.timeline-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.timeline-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.timeline-date svg { width: 13px; height: 13px; }
+
+.timeline-location {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.timeline-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.timeline-achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.timeline-achievements li {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.timeline-achievements li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.timeline-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: var(--r-full);
+  padding: 3px 10px;
+}
