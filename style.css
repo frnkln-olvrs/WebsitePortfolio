@@ -765,6 +765,12 @@ input, textarea { font: inherit; }
   align-items: flex-start;
 }
 
+.stat-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .stat-number {
   font-size: 2rem;
   font-weight: 800;
