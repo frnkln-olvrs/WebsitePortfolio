@@ -444,3 +444,80 @@ const ContactForm = (() => {
 
   return { init };
 })();
+
+/* ── 10. FOOTER YEAR ─────────────────────────────────────── */
+function initFooterYear() {
+  const el = document.getElementById('footer-year');
+  if (el) el.textContent = new Date().getFullYear();
+}
+
+/* ── 11. CURSOR GLOW (desktop only) ─────────────────────── */
+const CursorGlow = (() => {
+  let glow;
+
+  function init() {
+    if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch devices
+
+    glow = document.createElement('div');
+    glow.id = 'cursor-glow';
+    Object.assign(glow.style, {
+      position:     'fixed',
+      width:        '340px',
+      height:       '340px',
+      borderRadius: '50%',
+      pointerEvents:'none',
+      zIndex:       '0',
+      opacity:      '0',
+      background:   'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)',
+      transform:    'translate(-50%,-50%)',
+      transition:   'opacity 0.3s ease',
+      willChange:   'transform',
+    });
+    document.body.appendChild(glow);
+
+    let visible = false;
+    let raf;
+
+    document.addEventListener('mousemove', e => {
+      if (!visible) { glow.style.opacity = '1'; visible = true; }
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        glow.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
+      });
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+      glow.style.opacity = '0';
+      visible = false;
+    });
+  }
+
+  return { init };
+})();
+
+/* ── 12. CARD TILT (subtle 3-D hover, desktop only) ─────── */
+const CardTilt = (() => {
+  const INTENSITY = 6; // degrees max
+
+  function applyTilt(card, e) {
+    const rect = card.getBoundingClientRect();
+    const cx   = rect.left + rect.width  / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const dx   = (e.clientX - cx) / (rect.width  / 2);
+    const dy   = (e.clientY - cy) / (rect.height / 2);
+    card.style.transform = `perspective(900px) rotateX(${-dy * INTENSITY}deg) rotateY(${dx * INTENSITY}deg) translateY(-4px)`;
+  }
+
+  function init() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', e => applyTilt(card, e), { passive: true });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  return { init };
+})();
