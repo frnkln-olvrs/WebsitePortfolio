@@ -521,3 +521,87 @@ const CardTilt = (() => {
 
   return { init };
 })();
+
+/* ── 13. TIMELINE LINE DRAW ANIMATION ────────────────────── */
+const TimelineDraw = (() => {
+  function init() {
+    const timeline = document.querySelector('.timeline');
+    if (!timeline) return;
+
+    const pseudoBefore = timeline;
+    // We animate via a scoped CSS variable trick
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          timeline.style.setProperty('--line-progress', '1');
+          observer.unobserve(timeline);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(timeline);
+  }
+
+  return { init };
+})();
+
+/* ── 14. TYPING EFFECT (hero tagline) ────────────────────── */
+const TypingEffect = (() => {
+  const PHRASES = [
+    'beautiful, performant digital experiences.',
+    'fast & accessible web applications.',
+    'scalable APIs and distributed systems.',
+    'design systems that teams love.',
+  ];
+
+  let phraseIdx = 0;
+  let charIdx   = 0;
+  let isDeleting = false;
+  let el;
+
+  function tick() {
+    const phrase = PHRASES[phraseIdx];
+    const speed  = isDeleting ? 35 : 65;
+
+    if (!isDeleting && charIdx <= phrase.length) {
+      el.textContent = phrase.slice(0, charIdx++);
+    } else if (isDeleting && charIdx >= 0) {
+      el.textContent = phrase.slice(0, charIdx--);
+    }
+
+    if (!isDeleting && charIdx > phrase.length) {
+      isDeleting = true;
+      setTimeout(tick, 2200); // pause before deleting
+      return;
+    }
+
+    if (isDeleting && charIdx < 0) {
+      isDeleting = false;
+      phraseIdx  = (phraseIdx + 1) % PHRASES.length;
+      charIdx    = 0;
+      setTimeout(tick, 500);
+      return;
+    }
+
+    setTimeout(tick, speed);
+  }
+
+  function init() {
+    const tagline = document.querySelector('.hero-tagline');
+    if (!tagline) return;
+
+    // Replace content with a static + dynamic span
+    const staticPart = 'I craft ';
+    tagline.innerHTML = `${staticPart}<span class="text-accent" id="typing-target"></span><span class="typing-cursor" aria-hidden="true">|</span>`;
+
+    // Inject cursor blink style
+    const style = document.createElement('style');
+    style.textContent = `.typing-cursor{display:inline-block;animation:cursorBlink 0.9s step-end infinite;color:var(--accent);font-weight:300;margin-left:1px;}@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}`;
+    document.head.appendChild(style);
+
+    el = document.getElementById('typing-target');
+    setTimeout(tick, 1800); // start after skeleton fade
+  }
+
+  return { init };
+})();
