@@ -605,3 +605,62 @@ const TypingEffect = (() => {
 
   return { init };
 })();
+
+/* ── 15. ACCESSIBILITY: SKIP LINK ────────────────────────── */
+function initSkipLink() {
+  const skip = document.createElement('a');
+  skip.href  = '#main-content';
+  skip.textContent = 'Skip to main content';
+  Object.assign(skip.style, {
+    position:   'absolute',
+    top:        '-100px',
+    left:       '16px',
+    zIndex:     '10000',
+    background: 'var(--accent)',
+    color:      '#fff',
+    padding:    '8px 16px',
+    borderRadius: 'var(--r-md)',
+    fontWeight: '600',
+    fontSize:   '0.9rem',
+    transition: 'top 0.2s ease',
+  });
+  skip.addEventListener('focus', () => { skip.style.top = '16px'; });
+  skip.addEventListener('blur',  () => { skip.style.top = '-100px'; });
+  document.body.prepend(skip);
+}
+
+/* ── 16. LAZY LOAD IMAGES ────────────────────────────────── */
+function initLazyImages() {
+  if ('loading' in HTMLImageElement.prototype) return; // native lazy loading
+  const imgs = document.querySelectorAll('img[loading="lazy"]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) img.src = img.dataset.src;
+        io.unobserve(img);
+      }
+    });
+  });
+  imgs.forEach(img => io.observe(img));
+}
+
+/* ── INIT ────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  ThemeManager.init();
+  SkeletonLoader.init();
+  ParticlesEngine.init();
+  NavManager.init();
+  RevealManager.init();
+  SkillAnimator.init();
+  CounterAnimator.init();
+  ProjectFilter.init();
+  ContactForm.init();
+  CursorGlow.init();
+  CardTilt.init();
+  TimelineDraw.init();
+  TypingEffect.init();
+  initFooterYear();
+  initSkipLink();
+  initLazyImages();
+});
