@@ -271,3 +271,109 @@ const RevealManager = (() => {
 
   return { init, triggerHero };
 })();
+
+/* ── 6. SKILL BAR ANIMATIONS ─────────────────────────────── */
+const SkillAnimator = (() => {
+  function init() {
+    const fills = document.querySelectorAll('.skill-fill');
+    if (!fills.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          const width = fill.dataset.width || '0';
+          // Small stagger based on position in parent
+          const idx = Array.from(fill.closest('.skill-bars')?.children || []).indexOf(fill.closest('.skill-bar-item'));
+          setTimeout(() => {
+            fill.style.width = `${width}%`;
+          }, Math.max(0, idx) * 100);
+          observer.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    fills.forEach(f => observer.observe(f));
+  }
+
+  return { init };
+})();
+
+/* ── 7. COUNTER ANIMATIONS ───────────────────────────────── */
+const CounterAnimator = (() => {
+  function animateCount(el, target, duration = 1800) {
+    const start = performance.now();
+
+    function step(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function init() {
+    const counters = document.querySelectorAll('.stat-number[data-target]');
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el     = entry.target;
+          const target = parseInt(el.dataset.target, 10);
+          animateCount(el, target);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+  }
+
+  return { init };
+})();
+
+/* ── 8. PROJECT FILTER ───────────────────────────────────── */
+const ProjectFilter = (() => {
+  function init() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards   = document.querySelectorAll('.project-card');
+
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update button state
+        buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        const filter = btn.dataset.filter;
+
+        cards.forEach((card, idx) => {
+          const match = filter === 'all' || card.dataset.category === filter;
+
+          if (match) {
+            card.classList.remove('hidden-card');
+            // Stagger re-entry
+            card.style.transitionDelay = `${idx * 0.04}s`;
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => card.classList.add('visible'));
+            });
+          } else {
+            card.classList.remove('visible');
+            card.classList.add('hidden-card');
+            card.style.transitionDelay = '0s';
+          }
+        });
+      });
+    });
+  }
+
+  return { init };
+})();
+
