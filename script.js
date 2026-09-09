@@ -241,3 +241,33 @@ const NavManager = (() => {
 
   return { init };
 })();
+
+/* ── 5. SCROLL REVEAL ────────────────────────────────────── */
+const RevealManager = (() => {
+  let observer;
+
+  function init() {
+    const elements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-zoom');
+    if (!elements.length) return;
+
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  function triggerHero() {
+    // Immediately reveal hero elements after skeleton fades
+    document.querySelectorAll('.hero-section .reveal-left, .hero-section .reveal-right').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 120);
+    });
+  }
+
+  return { init, triggerHero };
+})();
