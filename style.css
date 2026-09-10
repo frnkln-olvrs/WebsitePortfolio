@@ -1809,11 +1809,17 @@ a.contact-item:hover {
     padding: 16px 20px 24px;
     gap: 4px;
     transform: translateY(-110%);
-    transition: transform var(--t-slow);
+    transition: transform var(--t-slow), visibility var(--t-slow);
     z-index: 999;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  .nav-links.open { transform: translateY(0); }
+  .nav-links.open {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 
   .nav-hamburger { display: flex; }
 
