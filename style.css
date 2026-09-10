@@ -1797,6 +1797,10 @@ a.contact-item:hover {
 
   .section { padding: 72px 16px; }
 
+  .scroll-indicator {
+    display: none;
+  }
+
   .nav-links {
     position: fixed;
     top: var(--nav-h);
