@@ -462,16 +462,18 @@ const CursorGlow = (() => {
     glow.id = 'cursor-glow';
     Object.assign(glow.style, {
       position:     'fixed',
+      left:         '0',
+      top:          '0',
       width:        '340px',
       height:       '340px',
       borderRadius: '50%',
       pointerEvents:'none',
       zIndex:       '0',
       opacity:      '0',
-      background:   'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)',
-      transform:    'translate(-50%,-50%)',
+      background:   'radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%)',
+      transform:    'translate(-50%, -50%)',
       transition:   'opacity 0.3s ease',
-      willChange:   'transform',
+      willChange:   'left, top',
     });
     document.body.appendChild(glow);
 
@@ -479,11 +481,13 @@ const CursorGlow = (() => {
     let raf;
 
     document.addEventListener('mousemove', e => {
-      if (!visible) { glow.style.opacity = '1'; visible = true; }
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        glow.style.transform = `translate(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%))`;
-      });
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+
+      if (!visible) {
+        glow.style.opacity = '1';
+        visible = true;
+      }
     }, { passive: true });
 
     document.addEventListener('mouseleave', () => {
