@@ -379,66 +379,70 @@ const ProjectFilter = (() => {
 
 /* ── 9. CONTACT FORM ─────────────────────────────────────── */
 const ContactForm = (() => {
-  function validate(data) {
-    const errors = [];
-    if (!data.name.trim() || data.name.trim().length < 2) {
-      errors.push('Please enter your full name (at least 2 characters).');
-    }
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRe.test(data.email.trim())) {
-      errors.push('Please enter a valid email address.');
-    }
-    if (!data.message.trim() || data.message.trim().length < 10) {
-      errors.push('Message must be at least 10 characters.');
-    }
-    return errors;
-  }
+  const SERVICE_ID = 'service_012mtod';
+  const TEMPLATE_ID = 'template_pp34gnv';
 
-  function showFeedback(el, type, message) {
-    el.className = `form-feedback ${type}`;
-    el.textContent = message;
-    // Auto-clear success after 6 seconds
-    if (type === 'success') {
-      setTimeout(() => {
-        el.className = 'form-feedback';
-        el.textContent = '';
-      }, 6000);
-    }
+  function showFeedback(element, type, message) {
+    element.className = `form-feedback ${type}`;
+    element.textContent = message;
   }
 
   function init() {
-    const form     = document.getElementById('contact-form');
+    const form = document.getElementById('contact-form');
     const feedback = document.getElementById('form-feedback');
-    const submitBtn = document.getElementById('form-submit');
-    if (!form || !feedback) return;
+    const submitButton = document.getElementById('form-submit');
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+    if (!form || !feedback || !submitButton) return;
 
-      const data = {
-        name:    form.querySelector('#form-name')?.value    || '',
-        email:   form.querySelector('#form-email')?.value   || '',
-        subject: form.querySelector('#form-subject')?.value || '',
-        message: form.querySelector('#form-message')?.value || '',
-      };
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
 
-      const errors = validate(data);
-      if (errors.length) {
-        showFeedback(feedback, 'error', errors[0]);
+      if (!form.checkValidity()) {
+        form.reportValidity();
         return;
       }
 
-      // Simulate async submission
-      const btnText = submitBtn?.querySelector('.btn-text');
-      if (btnText) btnText.textContent = 'Sending…';
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = '0.75'; }
+      const buttonText = submitButton.querySelector('.btn-text');
 
-      await new Promise(resolve => setTimeout(resolve, 1400));
+      submitButton.disabled = true;
+      submitButton.style.opacity = '0.7';
 
-      showFeedback(feedback, 'success', '✓ Message sent! I\'ll get back to you within 24 hours.');
-      form.reset();
-      if (btnText) btnText.textContent = 'Send Message';
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.style.opacity = ''; }
+      if (buttonText) {
+        buttonText.textContent = 'Sending...';
+      }
+
+      showFeedback(feedback, '', '');
+
+      try {
+        await emailjs.sendForm(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          form
+        );
+
+        showFeedback(
+          feedback,
+          'success',
+          '✓ Message sent successfully!'
+        );
+
+        form.reset();
+      } catch (error) {
+        console.error('EmailJS error:', error);
+
+        showFeedback(
+          feedback,
+          'error',
+          'Message could not be sent. Please try again.'
+        );
+      } finally {
+        submitButton.disabled = false;
+        submitButton.style.opacity = '';
+
+        if (buttonText) {
+          buttonText.textContent = 'Send Message';
+        }
+      }
     });
   }
 

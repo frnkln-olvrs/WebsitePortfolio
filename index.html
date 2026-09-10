@@ -671,22 +671,22 @@
           <div class="contact-form-wrap reveal-right">
             <form class="contact-form glass-card" id="contact-form" novalidate aria-label="Contact form">
               <div class="form-group">
-                <input type="text" id="form-name" class="form-input" placeholder=" " required autocomplete="name" aria-required="true" />
+                <input type="text" id="form-name" name="from_name" class="form-input" placeholder=" " required autocomplete="name" aria-required="true"/>
                 <label for="form-name" class="form-label">Full Name</label>
                 <div class="form-border"></div>
               </div>
               <div class="form-group">
-                <input type="email" id="form-email" class="form-input" placeholder=" " required autocomplete="email" aria-required="true" />
+                <input type="email" id="form-email" name="reply_to" class="form-input" placeholder=" " required autocomplete="email" aria-required="true"/>
                 <label for="form-email" class="form-label">Email Address</label>
                 <div class="form-border"></div>
               </div>
               <div class="form-group">
-                <input type="text" id="form-subject" class="form-input" placeholder=" " autocomplete="off" />
+                <input type="text" id="form-subject" name="subject" class="form-input" placeholder=" " autocomplete="off"/>
                 <label for="form-subject" class="form-label">Subject</label>
                 <div class="form-border"></div>
               </div>
               <div class="form-group">
-                <textarea id="form-message" class="form-input form-textarea" placeholder=" " required rows="5" aria-required="true"></textarea>
+                <textarea id="form-message" name="message" class="form-input form-textarea" placeholder=" " required rows="5" aria-required="true"></textarea>
                 <label for="form-message" class="form-label">Message</label>
                 <div class="form-border"></div>
               </div>
@@ -721,5 +721,12 @@
   </footer>
 
   <script src="script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    emailjs.init({
+      publicKey: "K67R76s6EWsC6T-Wh"
+    });
+  </script>
 </body>
 </html>
