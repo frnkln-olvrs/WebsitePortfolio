@@ -671,6 +671,12 @@ input, textarea { font: inherit; }
   box-shadow: var(--shadow-md);
 }
 
+.avatar-status.currently-working .status-dot {
+  background-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15),
+              0 0 12px rgba(239, 68, 68, 0.65);
+}
+
 .status-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
