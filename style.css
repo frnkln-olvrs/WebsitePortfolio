@@ -1475,6 +1475,22 @@ input, textarea { font: inherit; }
 .cert-meta { background: rgba(24,119,242,0.12); color: #1877f2; border: 1px solid rgba(24,119,242,0.2); }
 .cert-k8s  { background: rgba(50,108,229,0.12); color: #326ce5; border: 1px solid rgba(50,108,229,0.2); }
 
+.cert-badge.cert-python {
+  color: #3776ab;
+  background: linear-gradient(
+    135deg,
+    rgba(55, 118, 171, 0.15),
+    rgba(255, 212, 59, 0.12)
+  );
+  border: 1px solid rgba(55, 118, 171, 0.45);
+}
+
+.cert-badge.cert-angular {
+  color: #dd0031;
+  background: rgba(221, 0, 49, 0.12);
+  border: 1px solid rgba(221, 0, 49, 0.45);
+}
+
 .cert-body { flex: 1; min-width: 0; }
 
 .cert-name {
